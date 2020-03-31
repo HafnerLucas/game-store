@@ -1,13 +1,10 @@
 package ar.com.playmedia;
 
-/**
- * Hello world!
- *
- */
-public class App 
-{
-    public static void main( String[] args )
-    {
-        System.out.println( "Hello World!" );
+import ar.com.playmedia.view.Articles;
+
+public class App {
+    public static void main( String[] args ) {
+        Product productInterface = new Product();
+		productInterface.mainMenu();
     }
 }
