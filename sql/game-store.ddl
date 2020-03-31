@@ -1,26 +1,26 @@
 CREATE EXTENSION unaccent;
 
-CREATE TABLE Platform (
+CREATE TABLE platform (
 	id                   		 SMALLSERIAL PRIMARY KEY,
 	description                  text NOT NULL
 );
 
-INSERT INTO Platform (description) VALUES
+INSERT INTO platform (description) VALUES
 ('Nintendo'),
 ('Playstation'),
 ('Xbox');
 
-CREATE TABLE Category(
+CREATE TABLE category(
 	id                    		 SMALLSERIAL PRIMARY KEY,
 	description                  text NOT NULL
 );
 
-INSERT INTO Category(description) VALUES
+INSERT INTO category(description) VALUES
 ('Consola'),
 ('Accesorios'),
 ('Juegos');
 
-CREATE TABLE Product(
+CREATE TABLE product(
 	id					 	SERIAL primary key,
 	description          	text not null,
 	price				 	float not null,	
@@ -30,7 +30,7 @@ CREATE TABLE Product(
 	constraint no_negative check (price >= 0 and quantity >=0)	
 );
 
-INSERT INTO Product(description, price, quantity,category_id,platform_id) VALUES
+INSERT INTO product(description, price, quantity,category_id,platform_id) VALUES
 ('Playstation 4',35499.99,4,1,2),
 ('Nintendo Switch',45900,1,1,1),
 ('Nintendo 3DS XL',19000,5,1,1);
