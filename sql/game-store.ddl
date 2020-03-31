@@ -1,4 +1,3 @@
-
 CREATE EXTENSION unaccent;
 
 CREATE TABLE Platform (
@@ -6,7 +5,7 @@ CREATE TABLE Platform (
 	description                  text NOT NULL
 );
 
-INSERT INTO Platform (type) VALUES
+INSERT INTO Platform (description) VALUES
 ('Nintendo'),
 ('Playstation'),
 ('Xbox');
@@ -19,7 +18,7 @@ CREATE TABLE Category(
 INSERT INTO Category(description) VALUES
 ('Consola'),
 ('Accesorios'),
-('Juegos')
+('Juegos');
 
 CREATE TABLE Product(
 	id					 	SERIAL primary key,
@@ -34,5 +33,4 @@ CREATE TABLE Product(
 INSERT INTO Product(description, price, quantity,category_id,platform_id) VALUES
 ('Playstation 4',35499.99,4,1,2),
 ('Nintendo Switch',45900,1,1,1),
-('Nintendo 3DS XL',19000,5,1,1)
-
+('Nintendo 3DS XL',19000,5,1,1);
