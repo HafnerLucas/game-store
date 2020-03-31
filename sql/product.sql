@@ -26,7 +26,7 @@ CREATE OR REPLACE FUNCTION product_get_description (
 	IN p_description                      text
 ) RETURNS text AS
 $$ 
-	SELECT description FROM product WHERE description = p_description;
+	SELECT description FROM Product WHERE description = p_description;
 $$ LANGUAGE sql STABLE STRICT;
 
 
@@ -35,7 +35,7 @@ CREATE OR REPLACE FUNCTION product_set_description (
 	IN p_new_description                  text
 ) RETURNS void AS 
 $$
-	UPDATE product SET description = p_new_description WHERE description = p_description;
+	UPDATE Product SET description = p_new_description WHERE description = p_description;
 $$ LANGUAGE sql VOLATILE STRICT;
 
 
@@ -44,7 +44,7 @@ CREATE OR REPLACE FUNCTION product_get_price (
 	IN p_price                      float
 ) RETURNS float AS
 $$ 
-	SELECT price FROM product WHERE price = p_price;
+	SELECT price FROM Product WHERE price = p_price;
 $$ LANGUAGE sql STABLE STRICT;
 
 
@@ -53,7 +53,7 @@ CREATE OR REPLACE FUNCTION product_set_price (
 	IN p_new_price                  float
 ) RETURNS void AS 
 $$
-	UPDATE product SET price = p_new_price WHERE price = p_price;
+	UPDATE Product SET price = p_new_price WHERE price = p_price;
 $$ LANGUAGE sql VOLATILE STRICT;
 
 
@@ -62,7 +62,7 @@ CREATE OR REPLACE FUNCTION product_get_quantity (
 	IN p_quantity                      integer
 ) RETURNS integer AS
 $$ 
-	SELECT quantity FROM product WHERE quantity = p_quantity;
+	SELECT quantity FROM Product WHERE quantity = p_quantity;
 $$ LANGUAGE sql STABLE STRICT;
 
 
@@ -71,7 +71,7 @@ CREATE OR REPLACE FUNCTION product_set_quantity (
 	IN p_new_quantity                  integer
 ) RETURNS void AS 
 $$
-	UPDATE product SET quantity = p_new_quantity WHERE quantity = p_quantity;
+	UPDATE Product SET quantity = p_new_quantity WHERE quantity = p_quantity;
 $$ LANGUAGE sql VOLATILE STRICT;
 
 
@@ -81,7 +81,7 @@ CREATE OR REPLACE FUNCTION product_get_category (
 ) RETURNS integer AS
 $$ 
 	SELECT 
-	 FROM product WHERE category = p_category;
+	 FROM Product WHERE category = p_category;
 $$ LANGUAGE sql STABLE STRICT;
 
 
@@ -90,7 +90,7 @@ CREATE OR REPLACE FUNCTION product_set_category (
 	IN p_new_category                  integer
 ) RETURNS void AS 
 $$
-	UPDATE product SET category = p_new_category WHERE category = p_category;
+	UPDATE Product SET category = p_new_category WHERE category = p_category;
 $$ LANGUAGE sql VOLATILE STRICT;
 
 
@@ -100,7 +100,7 @@ CREATE OR REPLACE FUNCTION product_get_platform (
 ) RETURNS integer AS
 $$ 
 	SELECT 
-	 FROM product WHERE platform = p_platform;
+	 FROM Product WHERE platform = p_platform;
 $$ LANGUAGE sql STABLE STRICT;
 
 
@@ -109,7 +109,7 @@ CREATE OR REPLACE FUNCTION product_set_platform (
 	IN p_new_platform                  integer
 ) RETURNS void AS 
 $$
-	UPDATE product SET platform = p_new_platform WHERE platform = p_platform;
+	UPDATE Product SET platform = p_new_platform WHERE platform = p_platform;
 $$ LANGUAGE sql VOLATILE STRICT;
 
 
@@ -118,7 +118,7 @@ CREATE OR REPLACE FUNCTION product_search (
 	IN p_category                  integer DEFAULT '%'
 ) RETURNS SETOF product AS 
 $$
-	SELECT * FROM product 
+	SELECT * FROM Product 
 		WHERE unaccent(category) ilike unaccent('%' || p_category || '%');
 $$ LANGUAGE sql STABLE STRICT;
 
@@ -127,5 +127,5 @@ CREATE OR REPLACE FUNCTION product_identify (
 	IN p_id                     integer
 ) RETURNS product AS 
 $$
-	SELECT * FROM product  WHERE id = p_id;
+	SELECT * FROM Product  WHERE id = p_id;
 $$ LANGUAGE sql STABLE STRICT;
