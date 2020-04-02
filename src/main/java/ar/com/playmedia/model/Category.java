@@ -1,21 +1,21 @@
 package ar.com.playmedia.model;
 
 public class Category {
-    private Integer id;
-    private String description;
+  private Integer id;
+  private String description;
 
-    public Category()
+  public Category() {}
 
-    public Category(
-        Integer id,
-        String description
-    ){
-        this.id = id;
-		this.description = description;
-    }
+  public Category(
+      Integer id,
+      String description
+  ){
+    this.id = id;
+    this.description = description;
+  }
 
-    public Integer getId() {
-		return id;
+  public Integer getId() {
+  return id;
 	}
 
 	

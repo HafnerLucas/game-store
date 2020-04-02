@@ -1,6 +1,6 @@
 package ar.com.playmedia;
 
-import ar.com.playmedia.view.Articles;
+import ar.com.playmedia.view.Product;
 
 public class App {
     public static void main( String[] args ) {

@@ -1,6 +1,16 @@
-package ar.com.playmedia.model;
+package ar.com.playmedia.view;
+
+import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Product {
+	private Scanner keyboard;
+	private ar.com.playmedia.controller.Product handler;
+
+	public Product() {
+		keyboard = new Scanner(System.in);
+		handler = new ar.com.playmedia.controller.Product();
+	}
 
     public static void clearScreen() {
 		System.out.print("\033[H\033[2J");
@@ -15,10 +25,10 @@ public class Product {
 
 			System.out.println("Productos:");
 			System.out.println("=========");
-			System.out.println("	1) Agregar Articulo");
-			System.out.println("	2) Eliminar Articulo");
-			System.out.println("	3) Modificar Articulo");
-			System.out.println("	4) Listar Articulo");
+			System.out.println("	1) Agregar Producto");
+			System.out.println("	2) Eliminar Producto");
+			System.out.println("	3) Modificar Producto");
+			System.out.println("	4) Listar Producto");
 			System.out.println();
 			System.out.println("	0) Salir");
 			System.out.println();
@@ -27,6 +37,9 @@ public class Product {
 			option = Integer.parseInt(keyboard.nextLine());
 
             switch(option) {
+				case 1:
+					addProduct();
+					break;
 				case 0:
 					break;
 
@@ -34,8 +47,48 @@ public class Product {
 					System.out.print("Opcion incorrecta! Presione ENTER para continuar");
 					keyboard.nextLine();
 			}
+    	}
+	}
 
-    }
+	public void addProduct() {
+		ar.com.playmedia.model.Product product = new ar.com.playmedia.model.Product();
+
+		Integer other = -1;
+
+		while(other != 0) {
+			clearScreen();
+			System.out.println("Alta de Producto:");
+			System.out.println("==== == =========");
+			System.out.print("	Ingrese una breve descripcion del producto: ");
+			product.setDescription(keyboard.nextLine());
+
+			System.out.print("	Ingrese precio del producto: ");
+			product.setPrice(Float.parseFloat(keyboard.nextLine()));
+
+			System.out.print("	Ingrese la cantidad del producto: ");
+			product.setQuantity(Integer.parseInt(keyboard.nextLine()));
+
+			System.out.print("	Ingrese categoria del producto: ");
+			System.out.print("	1) Consola");
+			System.out.print("	2) Accesorios");
+			System.out.print("	3) Juegos");
+			product.setCategory(Integer.parseInt(keyboard.nextLine()));
+
+			System.out.print("	Ingrese categoria del producto: ");
+			System.out.print("	1) Nintendo");
+			System.out.print("	2) Playstation");
+			System.out.print("	3) Xbox");
+			product.setPlatform(Integer.parseInt(keyboard.nextLine()));
+
+			handler.connect();
+			handler.insert(product);
+			handler.disconnect();
+
+			System.out.println();
+			System.out.print("Agregar otro contacto? (0 no / 1 si): ");
+			other = Integer.parseInt(keyboard.nextLine());
+		}
+	}
 
 
 }

@@ -1,22 +1,22 @@
 package ar.com.playmedia.model;
 
 public class Platform {
-    private Integer id;
-    private String description;
+  private Integer id;
+  private String description;
 
-    public Platform()
+  public Platform() {}
 
-    public Platform(
-        Integer id,
-        String description
-    ){
-        this.id = id;
-		this.description = description;
-    }
+  public Platform(
+      Integer id,
+      String description
+  ){
+    this.id = id;
+    this.description = description;
+  }
 
-    public Integer getId() {
-		return id;
-	}
+  public Integer getId() {
+  return id;
+  }
 
 	
 	public void setId(Integer id) {
