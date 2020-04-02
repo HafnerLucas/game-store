@@ -17,7 +17,7 @@ CREATE OR REPLACE FUNCTION product_destroy (
 	IN p_id                     integer
 ) RETURNS void AS 
 $$
-	DELETE FROM product WHERE id = p_id;
+	DELETE FROM Product WHERE id = p_id;
 $$ LANGUAGE sql VOLATILE STRICT;
 
 -- GETTERS Y SETTERS
@@ -129,3 +129,5 @@ CREATE OR REPLACE FUNCTION product_identify (
 $$
 	SELECT * FROM product  WHERE id = p_id;
 $$ LANGUAGE sql STABLE STRICT;
+
+
