@@ -41,6 +41,9 @@ public class Product {
 				case 1:
 					addProduct();
 					break;
+				case 2:
+					deleteProduct();
+					break;
 				case 0:
 					break;
 
@@ -58,7 +61,7 @@ public class Product {
 
 		while(other != 0) {
 			clearScreen();
-			System.out.println("Alta de Producto: german");
+			System.out.println("Alta de Producto: ");
 			System.out.println("==== == =========");
 			System.out.println();
 			System.out.println("Ingrese una breve descripcion del producto: ");
@@ -92,5 +95,25 @@ public class Product {
 		}
 	}
 
+	public void deleteProduct() {
+		Integer other = -1;
+
+		while(other != 0) {
+			clearScreen();
+			System.out.println("Baja de producto:");
+			System.out.println("==== == =========");
+			System.out.println();
+			System.out.println("	Ingrese Id de producto: ");
+			Integer id = Integer.parseInt(keyboard.nextLine());
+
+			handler.connect();
+			handler.delete(id);
+			handler.disconnect();
+
+			System.out.println();
+			System.out.println("Eliminar otro producto? (0 no / 1 si): ");
+			other = Integer.parseInt(keyboard.nextLine());
+		}
+	}
 
 }

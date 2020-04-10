@@ -137,4 +137,25 @@ $$
 	SELECT * FROM product  WHERE id = p_id;
 $$ LANGUAGE sql STABLE STRICT;
 
+-- LISTADO
+CREATE OR REPLACE FUNCTION product_list (
+) RETURNS SETOF product_view AS 
+$$
+SELECT * from product_view
+$$ LANGUAGE sql STABLE STRICT;
 
+
+
+--Vistas
+create view list_products_from_delete as
+	select id,description from product
+
+
+create view product_view as 
+	SELECT 
+		pr.id, pr.description, pr.price, pr.quantity, ca.description category,pl.description platform 
+	FROM product pr 
+	inner join category ca
+		on ca.id=pr.category_id 
+	inner join platform pl
+		on pl.id=pr.platform_id

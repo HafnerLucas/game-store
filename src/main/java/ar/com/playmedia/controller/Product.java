@@ -54,4 +54,19 @@ public class Product {
 			System.out.println("ERROR: " + e);
 		}
 	}
+
+	public void delete(Integer id) {
+		String queryString = String.format (
+			"SELECT  product_destroy(%s);",
+			id
+		);
+
+		try {
+			query = dbConnection.createStatement();
+			query.execute(queryString);
+			query.close();
+		} catch (Exception e) {
+			System.out.println("ERROR: " + e);
+		}
+	}
 }
