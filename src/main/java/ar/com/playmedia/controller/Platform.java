@@ -120,4 +120,25 @@ public class Platform {
 		return exist;
 	}
 
+	public String getPlatformDescription(Integer id){
+		String queryString = String.format (
+			"SELECT platform_get_description(%s)",
+			id);
+		String description="";
+		try {
+			Connection dbConnection = ConnectionManager.connect();
+			Statement query = dbConnection.createStatement();
+			ResultSet result = query.executeQuery(queryString);
+			if (result.next()){
+				description = result.getString(1);
+			}
+				query.close();
+		
+			dbConnection.close();
+		} catch (Exception e) { 
+			Console.showMessage(e.getMessage());
+		}
+		return description;
+	}
+
 }

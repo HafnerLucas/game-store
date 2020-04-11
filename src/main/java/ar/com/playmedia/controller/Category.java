@@ -120,4 +120,25 @@ public class Category {
 		return exist;
 	}
 
+	public String getCategoryDescription(Integer id){
+		String queryString = String.format (
+			"SELECT category_get_description(%s)",
+			id);
+		String description="";
+		try {
+			Connection dbConnection = ConnectionManager.connect();
+			Statement query = dbConnection.createStatement();
+			ResultSet result = query.executeQuery(queryString);
+			if (result.next()){
+				description = result.getString(1);
+			}
+				query.close();
+		
+			dbConnection.close();
+		} catch (Exception e) { 
+			Console.showMessage(e.getMessage());
+		}
+		return description;
+	}
+
 }

@@ -37,7 +37,7 @@ public class Product {
 			System.out.println("	5) Gestionar Categorias");
 			System.out.println("	6) Gestionar Plataformas");
 			System.out.println();
-			System.out.println("	0) Volver al menu principal");
+			System.out.println("	0) Salir");
 			System.out.println();
 			System.out.println("Opcion: ");
 
@@ -92,16 +92,16 @@ public class Product {
 			System.out.println("	Ingrese la cantidad del producto: ");
 			product.setQuantity(Integer.parseInt(keyboard.nextLine()));
 
-			System.out.println("	Ingrese categoria del producto: ");
-			System.out.println("	1) Consola");
-			System.out.println("	2) Accesorios");
-			System.out.println("	3) Juegos");
+			System.out.println("	Ingrese ID de categoria del producto: ");
+			ar.com.playmedia.controller.Category cat = 
+			new ar.com.playmedia.controller.Category();
+			cat.search("");
 			product.setCategory(Integer.parseInt(keyboard.nextLine()));
 
-			System.out.println("	Ingrese categoria del producto: ");
-			System.out.println("	1) Nintendo");
-			System.out.println("	2) Playstation");
-			System.out.println("	3) Xbox");
+			System.out.println("	Ingrese ID de la plataforma del producto: ");
+			ar.com.playmedia.controller.Platform plat = 
+			new ar.com.playmedia.controller.Platform();
+			plat.search("");
 			product.setPlatform(Integer.parseInt(keyboard.nextLine()));
 
 			handler.connect();
@@ -168,10 +168,16 @@ public class Product {
 
 
 	public void printProduct(ar.com.playmedia.model.Product product) {
+		ar.com.playmedia.controller.Category cat = new ar.com.playmedia.controller.Category();
+		ar.com.playmedia.controller.Platform plat = new ar.com.playmedia.controller.Platform();
 		System.out.println(String.format("ID: %s", product.getId()));
 		System.out.println(String.format("Descripcion: %s", product.getDescription()));
 		System.out.println(String.format("Precio: %s", product.getPrice()));
 		System.out.println(String.format("Cantidad: %s", product.getQuantity()));
+		System.out.println(String.format("Categoria: %s", 
+			cat.getCategoryDescription(product.getCategory())));
+		System.out.println(String.format("Plataforma: %s", 
+			plat.getPlatformDescription(product.getPlatform())));
 		System.out.println();
 	}
 
@@ -221,6 +227,16 @@ public class Product {
 
 			if(option == 0)
 				break;
+			else if(option == 4){
+				ar.com.playmedia.controller.Category cat = 
+				new ar.com.playmedia.controller.Category();
+				cat.search("");
+			}
+			else if (option == 5){
+				ar.com.playmedia.controller.Platform plat = 
+				new ar.com.playmedia.controller.Platform();
+				plat.search("");
+			}
 
 			System.out.println("Nuevo valor: ");
 			String newValue = keyboard.nextLine();
