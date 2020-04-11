@@ -163,7 +163,6 @@ public class Product {
 		return product;
 	}
 
-
 	public ar.com.playmedia.model.Product setDescription (
 		ar.com.playmedia.model.Product product, 
 		String description
