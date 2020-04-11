@@ -3,12 +3,12 @@ package ar.com.playmedia.view;
 import java.util.Scanner;
 import ar.com.playmedia.helper.*;
 
-public class Category {
+public class Platform {
 
-	static ar.com.playmedia.controller.Category handler;
+	static ar.com.playmedia.controller.Platform handler;
 
-	public Category(){		
-		handler  = new ar.com.playmedia.controller.Category();
+	public Platform(){		
+		handler  = new ar.com.playmedia.controller.Platform();
 	}
 
 	public void menu(){
@@ -18,14 +18,14 @@ public class Category {
         while(option != 0) {
 			Console.clean();
 
-			System.out.println("Categorias:");
+			System.out.println("Plataformas:");
 			Console.underline();
-			System.out.println("	1) Agregar Categoría");
-			System.out.println("	2) Eliminar Categoría");
-			System.out.println("	3) Modificar Categoría");
-			System.out.println("	4) Listar Categorías");
+			System.out.println("	1) Agregar Plataforma");
+			System.out.println("	2) Eliminar Plataforma");
+			System.out.println("	3) Modificar Plataforma");
+			System.out.println("	4) Listar Plataformas");
 			System.out.println();
-			System.out.println("	0) Volver al menu principal");
+			System.out.println("	0) Salir");
 			System.out.println();
 			Console.underline();
 			System.out.print("Opcion: ");
@@ -34,13 +34,13 @@ public class Category {
 
             switch(option) {
 				case 1:
-					addCategory();
+					addPlatform();
 					break;
 				case 2:
-					deleteCategory();
+					deletePlatform();
 					break;
 				case 3:
-					modifyCategory();
+					modifyPlatform();
 					break;
 				case 4:
 					listAll();
@@ -56,26 +56,26 @@ public class Category {
 
 	}
 
-	public void addCategory () {
+	public void addPlatform () {
 		Scanner keyboard = new Scanner(System.in);
 		Integer other = -1;
 
 		while(other != 0) {
 			Console.clean();
-			System.out.println("Nueva Categoría:");
+			System.out.println("Nueva Plataforma:");
 			Console.underline();
-			System.out.println("	Ingrese descripción de la categoría: ");
+			System.out.println("	Ingrese descripción de la Plataforma: ");
 			
 			handler.insert(keyboard.nextLine());
 
 			System.out.println();
-			System.out.println("Agregar otra categoria? (0 no / 1 si): ");
+			System.out.println("Agregar otra plataforma? (0 no / 1 si): ");
 
 			try{
 				other = Integer.parseInt(keyboard.nextLine());
 			}
 			catch(java.lang.NumberFormatException ex){
-				Console.showMessage("Debe ingresar un número. Volviendo al menu categorias");
+				Console.showMessage("Debe ingresar un número. Volviendo al menu Plataformas");
 				other = 0;
 			}
 			
@@ -83,27 +83,27 @@ public class Category {
 
 		}
 	
-	public void deleteCategory (){
+	public void deletePlatform (){
 		Console.clean();
-		System.out.println("Elimine categoría");
+		System.out.println("Elimine Plataforma");
 		Console.underline();
 
 		Scanner keyboard = new Scanner (System.in);
 
 		try{
-			System.out.println("Ingrese id de la categoría a eliminar: ");
+			System.out.println("Ingrese id de la Plataforma a eliminar: ");
 			Integer id = Integer.parseInt(keyboard.nextLine());
 
 			if(handler.exist(id)){
 				handler.delete(id);
-				Console.showMessage("Categoría eliminada exitosamente!");
+				Console.showMessage("Plataforma eliminada exitosamente!");
 			}
 			else{
-				Console.showMessage("No se encontro una categoria con el id ingresado.\n Ingrese al listado y verifique");
+				Console.showMessage("No se encontro una plataforma con el id ingresado.\n Ingrese al listado y verifique");
 			}
 		}
 		catch(java.lang.NumberFormatException ex){
-			Console.showMessage("Debe ingresar un número. Volviendo al menu categorias");			
+			Console.showMessage("Debe ingresar un número. Volviendo al menu Plataformas");			
 		}
 		catch(Exception ex){
 			Console.showMessage(ex.getMessage());
@@ -111,26 +111,26 @@ public class Category {
 
 	}
 
-	public void modifyCategory(){
+	public void modifyPlatform(){
 		Console.clean();
-		System.out.println("Modifica categoría");
+		System.out.println("Modifica Plataforma");
 		Console.underline();
 
 		Scanner keyboard = new Scanner (System.in);
 
 		try{
-			System.out.println("Ingrese id de la categoría a modificar: ");
+			System.out.println("Ingrese id de la Plataforma a modificar: ");
 			Integer id = Integer.parseInt(keyboard.nextLine());
 
 			if(handler.exist(id)){
-				System.out.println("Ingrese la nueva descripción de la categoría: ");
+				System.out.println("Ingrese la nueva descripción de la Plataforma: ");
 				handler.modify(id,keyboard.nextLine());
-				Console.showMessage("Categoría modificada exitosamente!");
+				Console.showMessage("Plataforma modificada exitosamente!");
 			}
 
 		}
 		catch(java.lang.NumberFormatException ex){
-			Console.showMessage("Debe ingresar un número. Volviendo al menu categorias");			
+			Console.showMessage("Debe ingresar un número. Volviendo al menu Plataformas");			
 		}
 		catch(Exception ex){
 			Console.showMessage(ex.getMessage());
@@ -140,7 +140,7 @@ public class Category {
 	
 	public void listAll(){		
 		Console.clean();
-		System.out.println("Listado categorías");
+		System.out.println("Listado Plataformas");
 		Console.underline();
 
 		handler.search("");

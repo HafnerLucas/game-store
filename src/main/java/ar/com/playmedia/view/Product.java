@@ -7,10 +7,12 @@ import java.util.ArrayList;
 public class Product {
 	private Scanner keyboard;
 	private ar.com.playmedia.controller.Product handler;
+	private ar.com.playmedia.view.Platform handlerPlatform;
 
 	public Product() {
 		keyboard = new Scanner(System.in);
 		handler = new ar.com.playmedia.controller.Product();
+		handlerPlatform = new ar.com.playmedia.view.Platform();
 	}
 
     public static void clearScreen() {
@@ -30,8 +32,9 @@ public class Product {
 			System.out.println("	2) Eliminar Producto");
 			System.out.println("	3) Modificar Producto");
 			System.out.println("	4) Listar Producto");
+			System.out.println("	6) Gestionar Plataformas");
 			System.out.println();
-			System.out.println("	0) Salir");
+			System.out.println("	0) Volver al menu principal");
 			System.out.println();
 			System.out.println("Opcion: ");
 
@@ -43,6 +46,9 @@ public class Product {
 					break;
 				case 2:
 					deleteProduct();
+					break;
+				case 6:
+					handlerPlatform.menu();
 					break;
 				case 0:
 					break;
