@@ -130,10 +130,7 @@ public class Product {
 		System.out.println("Listado de Productos:");
 		System.out.println("======= == ==========");
 		System.out.println();
-		System.out.println("	Ingrese parte la categoria del producto:");
-		System.out.println("	1) Nintendo");
-		System.out.println("	2) Playstation");
-		System.out.println("	3) Xbox");
+		System.out.println("	Ingrese descripcion o parte de la descripcion del producto");
 		String filter = keyboard.nextLine();
 
 		ArrayList<ar.com.playmedia.model.Product> productList;
