@@ -47,9 +47,21 @@ public class Product {
 				case 2:
 					deleteProduct();
 					break;
+<<<<<<< HEAD
 				case 6:
 					handlerPlatform.menu();
 					break;
+=======
+
+				case 3:
+					updateProduct();
+					break;
+
+				case 4:
+					searchProduct();
+					break;
+
+>>>>>>> b831a4c011f8b178568e3f7ca323851d46682260
 				case 0:
 					break;
 
@@ -119,6 +131,135 @@ public class Product {
 			System.out.println();
 			System.out.println("Eliminar otro producto? (0 no / 1 si): ");
 			other = Integer.parseInt(keyboard.nextLine());
+		}
+	}
+
+	public void searchProduct() {
+		clearScreen();
+		System.out.println("Listado de Productos:");
+		System.out.println("======= == ==========");
+		System.out.println();
+		System.out.println("	Ingrese parte la categoria del producto:");
+		System.out.println("	1) Nintendo");
+		System.out.println("	2) Playstation");
+		System.out.println("	3) Xbox");
+		String filter = keyboard.nextLine();
+
+		ArrayList<ar.com.playmedia.model.Product> productList;
+		handler.connect();
+
+		if(filter.isEmpty())
+			productList = handler.search();
+		else
+			productList = handler.search(filter);
+		
+		handler.disconnect();
+
+		clearScreen();
+		System.out.println("Listado de Productos:");
+		System.out.println("======= == ==========");
+		System.out.println();
+
+		for(ar.com.playmedia.model.Product product : productList) 
+			printProduct(product);
+
+		System.out.println();
+		System.out.println("Presione ENTER para continuar...");
+		keyboard.nextLine();
+	}
+
+
+	public void printProduct(ar.com.playmedia.model.Product product) {
+		System.out.println(String.format("ID: %s", product.getId()));
+		System.out.println(String.format("Descripcion: %s", product.getDescription()));
+		System.out.println(String.format("Precio: %s", product.getPrice()));
+		System.out.println(String.format("Cantidad: %s", product.getQuantity()));
+		System.out.println();
+	}
+
+	public void updateProduct() {
+		Integer identificationOK = 0;
+
+		ar.com.playmedia.model.Product product = null;
+
+		while(identificationOK != 1) {
+			clearScreen();
+			System.out.println("Modificacion de Productos:");
+			System.out.println("============ == ==========");
+			System.out.println();
+			System.out.println("	Ingrese ID del Producto: ");
+			Integer id = Integer.parseInt(keyboard.nextLine());
+
+			handler.connect();
+			product = handler.identify(id);
+			handler.disconnect();
+
+			System.out.println();
+			printProduct(product);
+
+			System.out.println("Es este el contacto deseado? (0 NO / 1 SI): ");
+			identificationOK = Integer.parseInt(keyboard.nextLine());
+		}
+
+		Integer option = -1;
+
+		while(option != 0) {
+			clearScreen();
+			System.out.println("Modificando Producto:");
+			System.out.println("=========== =========");
+			System.out.println();
+			printProduct(product);
+			System.out.println();
+			System.out.println("	1) Modificar ID");
+			System.out.println("	2) Modificar Descripcion");
+			System.out.println("	3) Modificar Precio");
+			System.out.println("	4) Modificar Cantidad");
+			System.out.println("	5) Modificar Categoria");
+			System.out.println("	6) Modificar Plataforma");
+			System.out.println();
+			System.out.println("	0) Salir");
+			System.out.println();
+			System.out.println("Elija dato a modificar: ");
+			option = Integer.parseInt(keyboard.nextLine());
+
+			if(option == 0)
+				break;
+
+			System.out.println("Nuevo valor: ");
+			String newValue = keyboard.nextLine();
+
+			handler.connect();
+
+			switch(option) {
+				case 1:
+					// product = handler.setId(product, Integer.parseInt(newValue));
+					break;
+
+				case 2:
+					product = handler.setDescription(product, newValue);
+					break;
+
+				case 3:
+					product = handler.setPrice(product, Float.parseFloat(newValue));
+					break;
+
+				case 4:
+					product = handler.setQuantity(product, Integer.parseInt(newValue));
+					break;
+
+				case 5:
+					product = handler.setCategory(product, Integer.parseInt(newValue));
+					break;
+				
+				case 6:
+					product = handler.setPlatform(product, Integer.parseInt(newValue));
+					break;
+
+				default:
+					System.out.println("Opcion incorrecta! Presione ENTER para continuar...");
+			}
+
+			handler.disconnect();
 		}
 	}
 
