@@ -25,7 +25,7 @@ public class Platform {
 			System.out.println("	3) Modificar Plataforma");
 			System.out.println("	4) Listar Plataformas");
 			System.out.println();
-			System.out.println("	0) Salir");
+			System.out.println("	0) Volver al menu principal");
 			System.out.println();
 			Console.underline();
 			System.out.print("Opcion: ");
