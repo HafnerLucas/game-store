@@ -208,12 +208,11 @@ public class Product {
 			System.out.println();
 			printProduct(product);
 			System.out.println();
-			System.out.println("	1) Modificar ID");
-			System.out.println("	2) Modificar Descripcion");
-			System.out.println("	3) Modificar Precio");
-			System.out.println("	4) Modificar Cantidad");
-			System.out.println("	5) Modificar Categoria");
-			System.out.println("	6) Modificar Plataforma");
+			System.out.println("	1) Modificar Descripcion");
+			System.out.println("	2) Modificar Precio");
+			System.out.println("	3) Modificar Cantidad");
+			System.out.println("	4) Modificar Categoria");
+			System.out.println("	5) Modificar Plataforma");
 			System.out.println();
 			System.out.println("	0) Salir");
 			System.out.println();
@@ -230,29 +229,25 @@ public class Product {
 
 			switch(option) {
 				case 1:
-					// product = handler.setId(product, Integer.parseInt(newValue));
-					break;
-
-				case 2:
 					product = handler.setDescription(product, newValue);
 					break;
 
-				case 3:
+				case 2:
 					product = handler.setPrice(product, Float.parseFloat(newValue));
 					break;
 
-				case 4:
+				case 3:
 					product = handler.setQuantity(product, Integer.parseInt(newValue));
 					break;
 
-				case 5:
+				case 4:
 					product = handler.setCategory(product, Integer.parseInt(newValue));
 					break;
 				
-				case 6:
+				case 5:
+				
 					product = handler.setPlatform(product, Integer.parseInt(newValue));
 					break;
-
 				default:
 					System.out.println("Opcion incorrecta! Presione ENTER para continuar...");
 			}
