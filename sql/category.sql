@@ -40,7 +40,7 @@ CREATE OR REPLACE FUNCTION search_category_if_contains (
 ) RETURNS SETOF category AS 
 $$
 	SELECT * FROM category 
-		WHERE description ilike ('%' || p_description || '%');
+		WHERE description ilike ('%' || p_description || '%') order by id asc;
 $$ LANGUAGE sql STABLE STRICT;
 
 
