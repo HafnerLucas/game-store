@@ -122,11 +122,11 @@ $$ LANGUAGE sql VOLATILE STRICT;
 
 -- IDENTIFICACION Y BUSQUEDA
 CREATE OR REPLACE FUNCTION product_search (
-	IN p_category                  integer DEFAULT '%'
+	IN p_description                  text DEFAULT '%'
 ) RETURNS SETOF product AS 
 $$
 	SELECT * FROM product 
-		WHERE unaccent(category) ilike unaccent('%' || p_category || '%');
+		WHERE unaccent(description) ilike unaccent('%' || p_description || '%');
 $$ LANGUAGE sql STABLE STRICT;
 
 
