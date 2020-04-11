@@ -46,12 +46,7 @@ public class Product {
 					break;
 				case 2:
 					deleteProduct();
-					break;
-<<<<<<< HEAD
-				case 6:
-					handlerPlatform.menu();
-					break;
-=======
+					break;				
 
 				case 3:
 					updateProduct();
@@ -61,7 +56,10 @@ public class Product {
 					searchProduct();
 					break;
 
->>>>>>> b831a4c011f8b178568e3f7ca323851d46682260
+				case 6:
+					handlerPlatform.menu();
+				    break;
+
 				case 0:
 					break;
 
