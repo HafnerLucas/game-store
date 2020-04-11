@@ -17,7 +17,7 @@ public class Product {
     public Product() {
 		url = "jdbc:postgresql://127.0.0.1:5432/game_store";
 		username = "dba";
-		password = "1234";
+		password = "12345678";
 	}
 
 	public void connect() {	
