@@ -18,16 +18,16 @@ import java.util.ArrayList;
 import org.json.*;
 
 
-@Path("/contact")
+@Path("/product")
 public class ContactResource {
-	private ar.com.playmedia.controller.Contact handler = new ar.com.playmedia.controller.Contact();
+	private ar.com.playmedia.controller.Product handler = new ar.com.playmedia.controller.Product();
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response search (
 		@QueryParam("surname") @DefaultValue("%") String surname
 	) {
-		ArrayList<ar.com.playmedia.model.Contact> contactList;
+		ArrayList<ar.com.playmedia.model.Product> contactList;
 
 		handler.connect();
 		contactList = handler.search(surname);
@@ -35,15 +35,15 @@ public class ContactResource {
 		
 		JSONArray contacts = new JSONArray();
 
-		for(ar.com.playmedia.model.Contact contactIterator : contactList) {
+		for(ar.com.playmedia.model.Product contactIterator : contactList) {
 			JSONObject contact = new JSONObject();
 
-			contact.put("dni", contactIterator.getDni());
-			contact.put("name", contactIterator.getName());
-			contact.put("surname", contactIterator.getSurname());
-			contact.put("phone", contactIterator.getPhone());
-			contact.put("email", contactIterator.getEmail());
-
+			contact.put("id", contactIterator.getId());
+			contact.put("description", contactIterator.getDescription());
+			contact.put("platform", contactIterator.getPlatform());
+			contact.put("price", contactIterator.getPrice());
+			contact.put("quantity", contactIterator.getQuantity());
+			contact.put("category", contactIterator.getCategory());
 			contacts.put(contact);
 		}
 
@@ -51,43 +51,4 @@ public class ContactResource {
 	}
 
 
-	@POST
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response create (
-		@FormParam("dni") Integer dni,
-		@FormParam("name") String name,
-		@FormParam("surname") String surname,
-		@FormParam("phone") String phone,
-		@FormParam("email") String email
-	) {
-		ar.com.playmedia.model.Contact contact = new ar.com.playmedia.model.Contact (
-			dni,
-			name,
-			surname,
-			phone,
-			email
-		);
-
-		handler.connect();
-		handler.insert(contact);
-		handler.disconnect();
-
-		return Response.status(Status.OK).build();
-	}
-
-
-	@PATCH
-	@Path("{dni}/phone/{phone}")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response setPhone (
-		@PathParam("dni") Integer dni,
-		@PathParam("phone") String phone
-	) {
-		handler.connect();
-		ar.com.playmedia.model.Contact contact = handler.identify(dni);
-		handler.setPhone(contact, phone);
-		handler.disconnect();
-
-		return Response.status(Status.OK).build();
-	}
 }
