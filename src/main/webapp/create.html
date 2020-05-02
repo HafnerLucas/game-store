@@ -1,0 +1,35 @@
+<html>
+	<head>
+		<title>Agenda PlayMedia</title>
+		<meta charset="UTF-8">
+	</head>
+	<body>
+		<h1>Alta de Contacto</h1>
+		<hr>
+
+		<form id="creationForm" action="api/contact" method="POST">
+			<label for="dni">DNI:</label><br>
+			<input type="number" id="dni" name="dni"><br><br>
+
+			<label for="name">Nombre:</label><br>
+			<input type="text" id="nombre" name="name"><br><br>
+			
+			<label for="surname">Apellido:</label><br>
+			<input type="text" id="surname" name="surname"><br><br>
+			
+			<label for="phone">Teléfono:</label><br>
+			<input type="text" id="phone" name="phone"><br><br>
+			
+			<label for="email">Correo Electrónico:</label><br>
+			<input type="text" id="email" name="email"><br><br>
+			
+			<button id="creationButton">Enviar</button>
+		</form> 
+		<br>
+		<br>
+		<a href="index.html">Menú Principal</a>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script src="js/create.js"></script>
+	</body>
+</html>
