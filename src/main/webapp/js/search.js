@@ -1,16 +1,16 @@
 $(document).ready(function() {
-	$.getJSON("api/contact", function(contacts) {
-		for(let i = 0; i < contacts.length; i++) {
-			const contact = contacts[i];
+	$.getJSON("api/product", function(products) {
+		for(let i = 0; i < products.length; i++) {
+			const product = products[i];
 
 			const newRow = `
 				<tr>
-					<td>${contact.id}</td>
-					<td>${contact.name}</td>
-					<td>${contact.price}</td>
-					<td>${contact.quantity}</td>
-					<td>${contact.category}</td>
-					<td>${contact.platform}</td>
+					<td>${product.id}</td>
+					<td>${product.description}</td>
+					<td>${product.price}</td>
+					<td>${product.quantity}</td>
+					<td>${product.category}</td>
+					<td>${product.platform}</td>
 				</tr>
 			`;
 
