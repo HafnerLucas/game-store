@@ -2,98 +2,193 @@
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+	<modelVersion>4.0.0</modelVersion>
 
-    <groupId>ar.com.playmedia</groupId>
-    <artifactId>game-store</artifactId>
-    <version>0.1</version>
-    <packaging>jar</packaging>
+	<groupId>ar.com.playmedia</groupId>
+	<artifactId>game-store</artifactId>
+	<version>1.0</version>
+	<packaging>war</packaging>
 
-    <name>game-store</name>
-    <url>http://www.game.store.com</url>
+	<name>game-store</name>
+	<url>http://www.game.store.com</url>
 
-    <properties>
-      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-      <maven.compiler.source>11</maven.compiler.source>
-      <maven.compiler.target>11</maven.compiler.target>
-    </properties>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>11</maven.compiler.source>
+		<maven.compiler.target>11</maven.compiler.target>
 
-    <dependencies>
-      <dependency>
-        <groupId>org.postgresql</groupId>
-			  <artifactId>postgresql</artifactId>
-			  <version>42.2.7.jre7</version>
-      </dependency>
-    </dependencies>
+		<jersey.version>2.29.1</jersey.version>
+		<jaxrs.version>2.1.1</jaxrs.version>
+	</properties>
 
-    <build>
-      <pluginManagement>
-        <plugins>
-          <plugin>
-            <artifactId>maven-clean-plugin</artifactId>
-            <version>3.1.0</version>
-          </plugin>
-          
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <version>3.8.1</version>
-            <configuration>
-              <release>11</release>
-              <argLine>--illegal-access=permit</argLine>
-            </configuration>
-          </plugin>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.glassfish.jersey</groupId>
+                <artifactId>jersey-bom</artifactId>
+                <version>${jersey.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
-          <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>exec-maven-plugin</artifactId>
-            <version>1.6.0</version>
+	<dependencies>
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>42.2.7.jre7</version>
+		</dependency>
 
-            <executions>
-              <execution>
-                <goals>
-                  <goal>java</goal>
-                </goals>
-              </execution>
-            </executions>
-            
-            <configuration>
-              <release>11</release>
-              <argLine>--illegal-access=permit</argLine>
-              <mainClass>ar.com.playmedia.App</mainClass>
-            </configuration>
-          </plugin>
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20180130</version>
+		</dependency>
 
-          <plugin>
-            <artifactId>maven-assembly-plugin</artifactId>
-            <version>3.1.1</version>
+		<dependency>
+			<groupId>javax.annotation</groupId>
+			<artifactId>javax.annotation-api</artifactId>
+			<version>1.3.2</version>
+		</dependency>
 
-            <executions>
-              <execution>
-                <phase>package</phase>
-                <goals>
-                <goal>single</goal>
-                </goals>
-              </execution>
-            </executions>
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>2.4.0-b180830.0359</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.glassfish.jaxb</groupId>
+			<artifactId>jaxb-runtime</artifactId>
+			<version>2.4.0-b180830.0438</version>
+		</dependency>
 
-            <configuration>
-              <release>11</release>
-              <argLine>--illegal-access=permit</argLine>
-              <descriptorRefs>
-                <descriptorRef>jar-with-dependencies</descriptorRef>
-              </descriptorRefs>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>4.0.1</version>
+			<scope>provided</scope>
+		</dependency>
 
-              <archive>
-                <manifest>
-                  <mainClass>ar.com.playmedia.App</mainClass>
-                </manifest>
-              </archive>
+		<dependency>
+			<groupId>javax.ws.rs</groupId>
+			<artifactId>javax.ws.rs-api</artifactId>
+			<version>${jaxrs.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.glassfish.jersey.containers</groupId>
+			<artifactId>jersey-container-servlet</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.glassfish.jersey.inject</groupId>
+			<artifactId>jersey-hk2</artifactId>
+		</dependency>
+	</dependencies>
 
-              <appendAssemblyId>false</appendAssemblyId>
-            </configuration>
-          </plugin>
-        </plugins>
-      </pluginManagement>
-    </build>
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<artifactId>maven-clean-plugin</artifactId>
+					<version>3.1.0</version>
+				</plugin>
+				
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.8.1</version>
+					<configuration>
+						<release>11</release>
+						<argLine>--illegal-access=permit</argLine>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>exec-maven-plugin</artifactId>
+					<version>1.6.0</version>
+
+					<executions>
+						<execution>
+							<goals>
+								<goal>java</goal>
+							</goals>
+						</execution>
+					</executions>
+					
+					<configuration>
+						<release>11</release>
+						<argLine>--illegal-access=permit</argLine>
+						<mainClass>ar.com.playmedia.App</mainClass>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<artifactId>maven-assembly-plugin</artifactId>
+					<version>3.1.1</version>
+
+					<executions>
+						<execution>
+							<phase>package</phase>
+							<goals>
+							<goal>single</goal>
+							</goals>
+						</execution>
+					</executions>
+
+					<configuration>
+						<release>11</release>
+						<argLine>--illegal-access=permit</argLine>
+						<descriptorRefs>
+							<descriptorRef>jar-with-dependencies</descriptorRef>
+						</descriptorRefs>
+
+						<archive>
+							<manifest>
+								<mainClass>ar.com.playmedia.App</mainClass>
+							</manifest>
+						</archive>
+
+						<appendAssemblyId>false</appendAssemblyId>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-install-plugin</artifactId>
+					<version>3.0.0-M1</version>
+					<configuration>
+						<release>11</release>
+						<argLine>--illegal-access=permit</argLine>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>3.1.2</version>
+					<configuration>
+						<release>11</release>
+						<argLine>--illegal-access=permit</argLine>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-site-plugin</artifactId>
+					<version>3.7.1</version>
+					<configuration>
+						<release>11</release>
+						<argLine>--illegal-access=permit</argLine>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		
+		<sourceDirectory>src/main/java</sourceDirectory>
+		<finalName>agenda</finalName>
+	</build>
 </project>
